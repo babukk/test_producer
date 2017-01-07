@@ -5,29 +5,27 @@ from rq import Queue
 from rq.job import Job
 
 from worker import conn
+from content_queue import conn
 
 app = Flask(__name__)
 api = Api(app)
-rqueue = Queue(connection=conn)
+req_queue = Queue(connection=conn)
+con_queue = Queue(connection=conn)
 
-# ----------------------------------------------------------------------------------------------------------------------
-def xxx(url):
-    print '--------------------------------> url = ' + url
-    pass
+from QueueServices import qservices
 
-
-# ----------------------------------------------------------------------------------------------------------------------
+# -----------------------------------------------------------------------------------------------------------------------
 class CreateJobByURL(Resource):
     def post(self):
-         args = parser.parse_args()
-         print repr(args)
-         print 'URL = ' + args['url']
-         job = rqueue.enqueue_call(
-            func=xxx, args=(args['url'],), result_ttl=5000
-         )
-         print('job = ' + job.get_id())
+        args = parser.parse_args()
+        print repr(args)
+        print 'URL = ' + args['url']
+        job = req_queue.enqueue_call(
+            func=qservices.fetch_content, args=(args['url'], con_queue), result_ttl=10
+        )
+        print('job = ' + job.get_id())
 
-         return {'URL': args['url'], 'JOB': job.get_id()}
+        return {'URL': args['url'], 'JOB': job.get_id()}
 
 
 # ----------------------------------------------------------------------------------------------------------------------
