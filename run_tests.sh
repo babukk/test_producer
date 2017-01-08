@@ -2,6 +2,7 @@
 #-----------------------------------------------------------------------------------------------------------
 
 py.test -v tests/test_server.py
+# python tests/test_requests.py
 
 
 curl -H "Content-Type: application/json" \
