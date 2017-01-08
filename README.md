@@ -1,7 +1,7 @@
-## Test prodicer
+## Test producer
 
 ### Features
-Gets URL as a POST-parameter (via JSON or form input), extracts HTML-content and palces it into Redis database.
+Gets URL as a POST-parameter (via JSON or form input), extracts HTML-content and places it into Redis database.
 
 ### How to
 
