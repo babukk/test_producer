@@ -2,3 +2,4 @@
 *.bak
 venv/
 *tmp/
+tests/__pycache__/
