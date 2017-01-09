@@ -1,7 +1,7 @@
 ## Test producer
 
 ### Features
-Gets URL as a POST-parameter (via JSON or form input), extracts HTML-content and places it into Redis database.
+Gets URL as a POST-parameter (via JSON or form input), extracts HTML-content and places it into Redis database (simple redis-queue): redis://localhost:6379/1
 
 ### How to
 
@@ -12,9 +12,9 @@ virtualenv venv
 . ./venv/bin/activate
 pip install -I -r requirements.txt
 ```
-Run the rq-worker (in separate terminal winwod):
+Run the rq-worker (in separate terminal window):
 ```bash
-cd test-producer
+cd test_producer
 . ./venv/bin/activate
 python req-worker.py
 ```
@@ -22,7 +22,7 @@ python req-worker.py
 Run the application:
 
 ```bash
-cd test-producer
+cd test_producer
 . ./venv/bin/activate
 python app.py
 ```
